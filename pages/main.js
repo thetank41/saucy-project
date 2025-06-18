@@ -54,15 +54,34 @@ app.get('/buy', async (req, res) => {
 app.get('/access', (req, res) => {
   res.send(`
     <style>
-      body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; text-align: center; }
-      h2 { font-size: 2rem; margin-bottom: 1rem; }
-      p { font-size: 1.1rem; }
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        max-width: 700px;
+        margin: auto;
+        text-align: center;
+        line-height: 1.6;
+      }
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1.1rem;
+      }
+      strong {
+        font-weight: 600;
+      }
     </style>
 
-    <h2>You're in 💖</h2>
-    <p>You’re fully set up with lifetime access.<br>Welcome to the vault.</p>
+    <h2>✅ Payment received</h2>
+    <p>Your <strong>Saucy</strong> presale spot is locked.</p>
+    <p>DM <strong>Fresh</strong> (<em>skymosely</em>) on Discord with a screenshot of this page<br>to claim scripts, voice messages, and 1:1 DM access.</p>
+    <p>The full video course drops once I’m back from travel — you’ll get access 48 hours before public launch.</p>
+    <p style="margin-top: 2rem;"><em>Non-refundable. One purchase per person.</em></p>
   `);
 });
+
 
 // Cancel page
 app.get('/cancel', (req, res) => {
