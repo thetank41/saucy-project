@@ -58,7 +58,7 @@ app.get('/buy', async (req, res) => {
     ],
 
 
-      success_url: 'https://freshdoes.com/access',
+      success_url: 'https://freshdoes.com/woohoo',
       cancel_url: 'https://freshdoes.com/cancel',
 
       metadata: {
@@ -76,7 +76,7 @@ app.get('/buy', async (req, res) => {
 });
 
 // Final access page after successful payment
-app.get('/access', (req, res) => {
+app.get('/woohoo', (req, res) => {
   res.send(`
     <style>
       body {
