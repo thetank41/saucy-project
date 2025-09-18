@@ -247,6 +247,34 @@
             font-weight: 700;
             color: var(--black);
         }
+        /* Modal */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.8);
+  display:none; align-items:center; justify-content:center;
+  z-index:1000; padding:20px;
+}
+.modal{
+  width:min(1000px,92vw); height:min(85vh,900px);
+  background:var(--card-bg); border:1px solid rgba(248,216,122,.2);
+  border-radius:14px; overflow:hidden; display:flex; flex-direction:column;
+  box-shadow:0 30px 100px rgba(0,0,0,.6);
+}
+.modal-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; font-weight:700;
+  background:linear-gradient(135deg,var(--dark-bg),#2a3441);
+  border-bottom:1px solid rgba(248,216,122,.08);
+}
+.modal-close{
+  background:transparent; border:none; font-size:20px; color:var(--text-light);
+  cursor:pointer; line-height:1;
+}
+.modal-body{ flex:1; }
+.modal-body iframe{ width:100%; height:100%; border:0; display:block; }
+
+/* Prevent background scroll when modal open */
+.body-locked{ overflow:hidden; }
+
 
         .copyright {
             color: var(--text-light);
@@ -293,15 +321,16 @@
 </head>
 <body>
     <!-- Header -->
-<header class="header">
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">Saucy</div>
-            <a href="#join" class="cta-button">Get Access</a>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Saucy Trading</div>
+                <a href="#join" class="cta-button">Learn Strategy</a>
+            </div>
         </div>
-    </div>
-</header>
-<!-- Hero Section -->
+    </header>
+
+    <!-- Hero Section -->
 <section class="hero">
     <div class="container">
         <div class="hero-content">
@@ -326,70 +355,54 @@
     </div>
 </section>
 
-<!-- Proof Section -->
+    <!-- Proof Section -->
 <section class="proof-section">
-    <div class="container">
-        <div class="proof-grid animate-on-scroll">
-            <div class="proof-card">
-                <div style="width: 100%; height: auto; background: linear-gradient(45deg, var(--primary), var(--accent)); border-radius: 10px; padding: 1rem; color: var(--black); font-weight: 600;">
-                    <p><strong>Straight up:</strong><br>
-                    💰 I cleared <strong>$75k</strong> this past year at <em>17</em>.<br>
-                    I tried <strong>ecom, smma, dropshipping</strong>.<br>
-                    None of it hit. This did.</p>
-
-                    <p>I run on <strong>3 main platforms</strong>.<br>
-                    And I dominate them.</p>
-
-                    <p>The formula works.<br>
-                    <strong>Stay sharp. Keep learning.</strong><br>
-                    I keep mentors, I reinvest,<br>
-                    I apply it all here.</p>
-
-                    <p>This is why Saucy works.<br>
-                    <strong>I do this every day.</strong></p>
-                </div>
-            </div>
-
-            <div class="proof-card">
-                <div style="width: 100%; height: auto; background: linear-gradient(45deg, var(--accent), var(--primary)); border-radius: 10px; padding: 1rem; color: var(--black); font-weight: 600;">
-                    <p><strong>Pricing:</strong></p>
-                    <ul>
-                        <li><strong>📅 Monthly:</strong> $197 → includes access to the private community, weekly calls, daily drops</li>
-                        <li><strong>🔒 Lifetime Premium:</strong> $697 one-time → lock in once, stay tapped in</li>
-                    </ul>
-                    <p>It only takes <strong>1–2 clients</strong> to cover your spot.<br>
-                    Even beginners hit <strong>$3k/month</strong>. Scaling higher is simple with:</p>
-                    <ul>
-                        <li><strong>💬 Direct DM access to me</strong></li>
-                        <li><strong>⚡ Proven systems ready to plug in</strong></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="proof-card">
-                <div style="width: 100%; height: auto; background: linear-gradient(45deg, var(--primary), #f1c94e); border-radius: 10px; padding: 1rem; color: var(--black); font-weight: 600;">
-                    <p><strong>Status: Locked 🔒</strong><br>
-                    All spots filled.<br>
-                    Next drop: <strong>end of September</strong>.</p>
-                    
-                    <p><strong>✅ Guarantee:</strong><br>
-                    Make <strong>$2k in 60 days</strong> or get your money back.</p>
-                </div>
-            </div>
+  <div class="container">
+    <div class="proof-grid animate-on-scroll">
+      <!-- Reviews -->
+      <div class="proof-card" role="button" tabindex="0"
+           onclick="openModal('reviews.html','Community Reviews')"
+           onkeypress="if(event.key==='Enter'){openModal('reviews.html','Community Reviews')}">
+        <div style="width:100%;height:200px;background:linear-gradient(45deg,var(--primary),var(--accent));border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--black);font-weight:700;margin-bottom:20px;">
+          Reviews
         </div>
-    </div>
-</section>
+        <p>Real screenshots from the Discord.</p>
+      </div>
 
-<!-- Another CTA Section -->
-<section class="final-cta">
-    <div class="container">
-        <div class="animate-on-scroll">
-            <a href="#join" class="main-cta">Get Inside</a>
+      <!-- Owner Posts -->
+      <div class="proof-card" role="button" tabindex="0"
+           onclick="openModal('ownerwins.html','Owner Posts')"
+           onkeypress="if(event.key==='Enter'){openModal('ownerwins.html','Owner Posts')}">
+        <div style="width:100%;height:200px;background:linear-gradient(45deg,var(--accent),var(--primary));border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--black);font-weight:700;margin-bottom:20px;">
+          Owner Posts
         </div>
+        <p>Announcements, wins, and receipts.</p>
+      </div>
     </div>
+  </div>
 </section>
 
 
+    <!-- Another CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="animate-on-scroll">
+                <a href="#join" class="main-cta">Learn My Strategy</a>
+            </div>
+        </div>
+    </section>
+<!-- Modal Overlay -->
+<div id="proof-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-header">
+      <span id="modal-title">Proof</span>
+      <button class="modal-close" type="button" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <iframe id="modal-iframe" src="about:blank"></iframe>
+    </div>
+  </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -399,7 +412,7 @@
                 <div class="footer-logo">S</div>
                 <a href="/privacy-policy">Privacy Policy</a>
             </div>
-            <p class="copyright">Copyright 2025™️ - Saucy LLC.</p>
+            <p class="copyright">Copyright 2025™️ - Saucy Trading LLC.</p>
         </div>
     </footer>
 
@@ -477,6 +490,49 @@
             }
         `;
         document.head.appendChild(style);
+        // Modal logic
+const modalOverlay = document.getElementById('proof-modal');
+const modalIframe  = document.getElementById('modal-iframe');
+const modalTitleEl = document.getElementById('modal-title');
+
+function openModal(src, title){
+  if(title) modalTitleEl.textContent = title;
+  modalOverlay.style.display = 'flex';
+  document.body.classList.add('body-locked');
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  // Load page into iframe, then jump to bottom
+  modalIframe.src = src;
+  modalIframe.onload = () => {
+    try {
+      const doc = modalIframe.contentDocument || modalIframe.contentWindow.document;
+      // start from the bottom
+      doc.documentElement.scrollTop = doc.documentElement.scrollHeight;
+      doc.body.scrollTop = doc.body.scrollHeight;
+      // also allow "scroll up" with Page Up/Home as usual in iframe
+    } catch(e){
+      // cross-origin guard (shouldn't trigger for local files)
+    }
+  };
+}
+
+function closeModal(){
+  modalOverlay.style.display = 'none';
+  document.body.classList.remove('body-locked');
+  // stop media in iframe
+  modalIframe.src = 'about:blank';
+}
+
+// Close on overlay click
+modalOverlay.addEventListener('click', (e)=>{
+  if(e.target === modalOverlay) closeModal();
+});
+
+// Close on ESC
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape' && modalOverlay.style.display === 'flex') closeModal();
+});
+
     </script>
 </body>
 </html>
