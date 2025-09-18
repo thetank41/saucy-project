@@ -1,207 +1,449 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>Saucy</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #1e1e1e;
-      color: white;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Saucy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f8d87a;
+            --secondary: #188bf6;
+            --white: #ffffff;
+            --gray: #cbd5e0;
+            --black: #000000;
+            --dark-bg: #0e1217;
+            --card-bg: #1a1f2e;
+            --text-light: #e2e8f0;
+            --accent: #1db7ff;
+        }
 
-    .container {
-      display: flex;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
-      gap: 2rem;
-      box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .main-content {
-      flex: 2;
-      background-color: #2a2a2a;
-      border-radius: 12px;
-      padding: 1.5rem;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--white);
+            line-height: 1.6;
+        }
 
-    .side-content {
-      flex: 1;
-      background-color: #2a2a2a;
-      border-radius: 12px;
-      padding: 1.5rem;
-      height: fit-content;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .video-container {
-      position: relative;
-      padding-top: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
+        /* Header Section */
+        .header {
+            padding: 20px 0;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a2332 100%);
+        }
 
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .thumb-container {
-      position: relative;
-      padding-top: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
 
-    .thumb-container img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary) 0%, #f1c94e 100%);
+            color: var(--black);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
 
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      align-items: center;
-    }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(248, 216, 122, 0.3);
+        }
 
-    .tag-row span {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--card-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-    .section-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin: 1.5rem 0 1rem;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23f8d87a" fill-opacity="0.05" points="0,1000 1000,1000 1000,0"/></svg>');
+            pointer-events: none;
+        }
 
-    .join-button {
-      background-color: #f8d87a;
-      color: #1e1e1e;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      padding: 14px 20px;
-      width: 100%;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      font-size: 16px;
-      transition: background-color 0.2s ease;
-      text-align: center;
-      text-transform: none;
-    }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
 
-    .join-button:hover {
-      background-color: #f1c94e;
-    }
+        .warning-banner {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 25px;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
 
-    .main-join {
-      display: none;
-    }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+        }
 
-    ul {
-      padding-left: 1.25rem;
-    }
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
 
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        padding: 0;
-      }
+        .hero h1 .highlight {
+            color: var(--primary);
+        }
 
-      .main-content {
-        background-color: transparent;
-        border-radius: 0;
-        padding: 1rem;
-      }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-      .side-content {
-        display: none;
-      }
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 30px auto;
+            border-radius: 2px;
+        }
 
-      .main-join {
-        display: block;
-        margin: 1.25rem 0;
-      }
-    }
-  </style>
+        .main-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #f1c94e 100%);
+            color: var(--black);
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(248, 216, 122, 0.3);
+        }
+
+        .main-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(248, 216, 122, 0.5);
+        }
+
+        /* Proof Section */
+        .proof-section {
+            padding: 80px 0;
+            background-color: var(--card-bg);
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .proof-card {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #2a3441 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(248, 216, 122, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .proof-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .proof-card img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--card-bg) 100%);
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--card-bg);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(248, 216, 122, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-logo {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .proof-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="main-content">
-      <h1>Unlock Saucy</h1>
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/HB8fJbu41yY" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <div class="tag-row">
-        <span>🔒 Private</span>
-        <span>👥 ??? members</span>
-        <span>🪙 $175</span>
-        <span>👑 By Fresh</span>
-      </div>
-      <div class="main-join">
-        <a href="/buy" style="text-decoration: none;">
-          <button class="join-button">JOIN $175</button>
-        </a>
-      </div>
-      <p>
-        I made over $65,000 in profit with E-Whoring in under a year.<br>
-        No ads, no team, just systems, persona work, and social engineering.<br><br>
-
-        I’ve taken everything I know and put it into one place.<br><br>
-
-        <strong>Saucy Academy</strong> isn’t a PDF or some lazy ebook.<br>
-        It’s a full vault of step-by-step training that actually shows you how to do this right.<br>
-        From building a high-converting persona to closing buyers and automating the work.<br><br>
-
-        If you’ve already made money from my advice, you know this is the next level.<br><br>
-        Saucy Academy is for those who want to take this seriously.<br>
-        Whether you're just starting or already earning, this is how you go further.
-      </p>
-      <div class="section-title">What you're getting:</div>
-      <ul>
-        <li>Step-by-step training to make your first $10K</li>
-        <li>Scripts, traffic tactics, and automation tools</li>
-        <li>Social engineering that gets results</li>
-        <li>Private community and lifetime updates</li>
-        <li>Early access to vault drops, tools, and new content</li>
-      </ul>
-      <p>Discounted price of $175 till Aug 24th, then it'll be $200+.</p>
+    <!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">Saucy</div>
+            <a href="#join" class="cta-button">Learn More</a>
+        </div>
     </div>
+</header>
 
-    <div class="side-content">
-      <div class="thumb-container">
-        <img src="https://i.imgur.com/U4Whlj0.png" alt="SAUCY Thumbnail">
-      </div>
-      <h3>Saucy</h3>
-      <p>The only E-Whoring course you’ll need ~ Traffic, automation, persona, pricing, sales, and more. All in one vault.</p>
-      <div style="margin: 1rem 0;">
-        <span>📄 Step-by-step Video Training</span><br>
-        <span>📄 Lifetime Access</span>
-      </div>
-      <a href="/buy" style="text-decoration: none;">
-        <button class="join-button">JOIN $175</button>
-      </a>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="warning-banner">This Page Could Get Taken Down At Any Moment</div>
+            
+            <h1>
+                Discover My Simple, Little-Known <span class="highlight">E-Whoring System</span><br>
+                Helping More Than <span class="highlight">7 New People Make Their First Sale</span><br>
+                Every Single Week For Over 417 Days In A Row
+            </h1>
+            
+            <div class="divider"></div>
+            
+            <p class="hero-subtitle">
+                Just By Following A Simple Set of Steps And Working Less Than 2 Hours Per Day
+            </p>
+            
+            <a href="#join" class="main-cta">Join Saucy</a>
+        </div>
     </div>
-  </div>
-  <script src="/main.js"></script>
+</section>
+
+<!-- Proof Section -->
+<section class="proof-section">
+    <div class="container">
+        <div class="proof-grid animate-on-scroll">
+            <div class="proof-card">
+                <div style="width: 100%; height: 200px; background: linear-gradient(45deg, var(--primary), var(--accent)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--black); font-weight: 600; margin-bottom: 20px;">
+                    Payment Proof Screenshot
+                </div>
+            </div>
+            <div class="proof-card">
+                <div style="width: 100%; height: 200px; background: linear-gradient(45deg, var(--accent), var(--primary)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--black); font-weight: 600; margin-bottom: 20px;">
+                    Success Story
+                </div>
+            </div>
+            <div class="proof-card">
+                <div style="width: 100%; height: 200px; background: linear-gradient(45deg, var(--primary), #f1c94e); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--black); font-weight: 600; margin-bottom: 20px;">
+                    Dashboard Screenshot
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Another CTA Section -->
+<section class="final-cta">
+    <div class="container">
+        <div class="animate-on-scroll">
+            <a href="#join" class="main-cta">Join Saucy</a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/refund-policy">Refund Policy</a>
+                <div class="footer-logo">S</div>
+                <a href="/privacy-policy">Privacy Policy</a>
+            </div>
+            <p class="copyright">Copyright 2025™️ - Saucy Trading LLC.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some dynamic behavior to CTAs
+        document.querySelectorAll('.cta-button, .main-cta').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255,255,255,0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
-
 </html>
