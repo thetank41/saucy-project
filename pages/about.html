@@ -274,6 +274,29 @@
 
 /* Prevent background scroll when modal open */
 .body-locked{ overflow:hidden; }
+.waitlist-body {
+  text-align: center;
+  padding: 30px;
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+.waitlist-body p {
+  margin-bottom: 15px;
+}
+.discord-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, #5865F2 0%, #404EED 100%);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.discord-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(88, 101, 242, 0.5);
+}
 
 
         .copyright {
@@ -324,8 +347,8 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">Saucy Trading</div>
-                <a href="#join" class="cta-button">Learn Strategy</a>
+                <div class="logo">Saucy</div>
+                <a href="javascript:void(0)" class="cta-button" onclick="openWaitlistModal()">Unlock Access</a>
             </div>
         </div>
     </header>
@@ -387,7 +410,7 @@
     <section class="final-cta">
         <div class="container">
             <div class="animate-on-scroll">
-                <a href="#join" class="main-cta">Learn My Strategy</a>
+                <a href="#join" class="main-cta">Get Inside</a>
             </div>
         </div>
     </section>
@@ -403,6 +426,21 @@
     </div>
   </div>
 </div>
+<!-- Waitlist Modal -->
+<div id="waitlist-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
+    <div class="modal-header">
+      <span id="waitlist-title">All Spots Taken</span>
+      <button class="modal-close" type="button" onclick="closeWaitlistModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body waitlist-body">
+      <p>🚫 All spots are currently filled.</p>
+      <p>In the meantime, join our <strong>free Discord community</strong> below and stay plugged in.</p>
+      <p>🔔 Another drop is happening <strong>end of September</strong>.</p>
+      <a href="https://discord.gg/YOURINVITE" target="_blank" class="discord-cta">Join Free Discord</a>
+    </div>
+  </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -412,7 +450,7 @@
                 <div class="footer-logo">S</div>
                 <a href="/privacy-policy">Privacy Policy</a>
             </div>
-            <p class="copyright">Copyright 2025™️ - Saucy Trading LLC.</p>
+            <p class="copyright">Copyright 2025™️ - Saucy LLC.</p>
         </div>
     </footer>
 
@@ -491,6 +529,24 @@
         `;
         document.head.appendChild(style);
         // Modal logic
+        // Waitlist modal logic
+const waitlistModal = document.getElementById('waitlist-modal');
+
+function openWaitlistModal(){
+  waitlistModal.style.display = 'flex';
+  document.body.classList.add('body-locked');
+}
+
+function closeWaitlistModal(){
+  waitlistModal.style.display = 'none';
+  document.body.classList.remove('body-locked');
+}
+
+// Close on overlay click
+waitlistModal.addEventListener('click', (e)=>{
+  if(e.target === waitlistModal) closeWaitlistModal();
+});
+
 const modalOverlay = document.getElementById('proof-modal');
 const modalIframe  = document.getElementById('modal-iframe');
 const modalTitleEl = document.getElementById('modal-title');
@@ -503,7 +559,28 @@ function openModal(src, title){
 
   // Load page into iframe, then jump to bottom
   modalIframe.src = src;
+  modalIframe.onload = () => {function openModal(src, title){
+  if(title) modalTitleEl.textContent = title;
+  modalOverlay.style.display = 'flex';
+  document.body.classList.add('body-locked');
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  // Load page into iframe, then jump to bottom
+  modalIframe.src = src;
   modalIframe.onload = () => {
+    try {
+      setTimeout(() => {
+        modalIframe.contentWindow.scrollTo(
+          0,
+          modalIframe.contentWindow.document.body.scrollHeight
+        );
+      }, 100);
+    } catch(e) {
+      // ignore cross-origin
+    }
+  };
+}
+
     try {
       setTimeout(() => {
         modalIframe.contentWindow.scrollTo(
