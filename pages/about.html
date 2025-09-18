@@ -505,13 +505,14 @@ function openModal(src, title){
   modalIframe.src = src;
   modalIframe.onload = () => {
     try {
-      const doc = modalIframe.contentDocument || modalIframe.contentWindow.document;
-      // start from the bottom
-      doc.documentElement.scrollTop = doc.documentElement.scrollHeight;
-      doc.body.scrollTop = doc.body.scrollHeight;
-      // also allow "scroll up" with Page Up/Home as usual in iframe
-    } catch(e){
-      // cross-origin guard (shouldn't trigger for local files)
+      setTimeout(() => {
+        modalIframe.contentWindow.scrollTo(
+          0,
+          modalIframe.contentWindow.document.body.scrollHeight
+        );
+      }, 100);
+    } catch(e) {
+      // ignore cross-origin
     }
   };
 }
