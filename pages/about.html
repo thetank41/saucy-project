@@ -117,6 +117,71 @@
             70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
         }
+        .pricing-grid {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.pricing-card {
+  background: linear-gradient(135deg, var(--card-bg), #2a3441);
+  border: 1px solid rgba(248, 216, 122, 0.15);
+  border-radius: 18px;
+  padding: 28px 22px;
+  width: 260px;
+  text-align: center;
+  transition: transform .25s ease, box-shadow .25s ease;
+  cursor: pointer;
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 12px 25px rgba(248, 216, 122, .25);
+}
+
+.pricing-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.pricing-card .price {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 12px 0;
+  color: var(--white);
+}
+
+.pricing-card p {
+  font-size: .9rem;
+  color: var(--text-light);
+  margin-bottom: 22px;
+  line-height: 1.4;
+}
+
+.buy-btn {
+  display: inline-block;
+  text-decoration: none;
+  background: var(--primary);
+  color: var(--black);
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 50px;
+  transition: .25s ease;
+}
+
+.buy-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0px 10px 25px rgba(248, 216, 122, .35);
+}
+
+.featured {
+  scale: 1.08;
+  border-color: var(--primary);
+}
+
 
         .hero h1 {
             font-family: 'Inter', sans-serif;
@@ -270,30 +335,68 @@
             font-weight: 700;
             color: var(--black);
         }
-        /* Modal */
-.modal-overlay{
-  position:fixed; inset:0; background:rgba(0,0,0,.8);
-  display:none; align-items:center; justify-content:center;
-  z-index:1000; padding:20px;
+ /* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: none;
+  align-items: flex-start; /* allow modal to scroll with page */
+  justify-content: center;
+  z-index: 1000;
+  padding: 40px 20px; /* cushion above + below cards */
+  overflow-y: auto;
 }
-.modal{
-  width:min(1000px,92vw); height:min(85vh,900px);
-  background:var(--card-bg); border:1px solid rgba(248,216,122,.2);
-  border-radius:14px; overflow:hidden; display:flex; flex-direction:column;
-  box-shadow:0 30px 100px rgba(0,0,0,.6);
+
+.modal {
+  width: min(1000px, 92vw);
+  max-height: 90vh; /* viewport height control */
+  background: var(--card-bg);
+  border: 1px solid rgba(248,216,122,.2);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 30px 100px rgba(0,0,0,.6);
 }
-.modal-header{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px 16px; font-weight:700;
-  background:linear-gradient(135deg,var(--dark-bg),#2a3441);
-  border-bottom:1px solid rgba(248,216,122,.08);
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  font-weight: 700;
+  background: linear-gradient(135deg,var(--dark-bg),#2a3441);
+  border-bottom: 1px solid rgba(248,216,122,.08);
 }
-.modal-close{
-  background:transparent; border:none; font-size:20px; color:var(--text-light);
-  cursor:pointer; line-height:1;
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: var(--text-light);
+  cursor: pointer;
+  line-height: 1;
 }
-.modal-body{ flex:1; }
-.modal-body iframe{ width:100%; height:100%; border:0; display:block; }
+
+/* ✅ SCROLLABLE modal content */
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  max-height: calc(90vh - 60px); /* avoids header overlap */
+}
+
+/* Media adjustments for smaller screens */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .modal {
+    max-height: 95vh;
+  }
+}
 
 /* Prevent background scroll when modal open */
 .body-locked{ overflow:hidden; }
@@ -371,7 +474,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">Saucy</div>
-                <a href="javascript:void(0)" class="cta-button" onclick="openWaitlistModal()">Learn My Strategy</a>
+                <a href="javascript:void(0)" class="cta-button" onclick="openWaitlistModal();">Learn My Strategy</a>
             </div>
         </div>
     </header>
@@ -397,7 +500,7 @@
                 and scale across <strong>Reddit, Discord, and dating apps.</strong>
             </p>
             
-            <a href="javascript:void(0)" class="main-cta" onclick="openWaitlistModal()">Learn My Strategy</a>
+            <a href="javascript:void(0)" class="main-cta" onclick="openWaitlistModal();">Learn My Strategy</a>
 
         </div>
     </div>
@@ -435,7 +538,7 @@
     <section class="final-cta">
         <div class="container">
             <div class="animate-on-scroll">
-                <a href="javascript:void(0)" class="main-cta" onclick="openWaitlistModal()">Learn My Strategy</a>
+                <a href="javascript:void(0)" class="main-cta" onclick="openWaitlistModal();">Learn My Strategy</a>
             </div>
         </div>
     </section>
@@ -455,25 +558,41 @@
 <div id="waitlist-modal" class="modal-overlay" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
     <div class="modal-header">
-      <span id="waitlist-title">All Spots Taken</span>
+      <span id="waitlist-title">Enrollment Open</span>
       <button class="modal-close" type="button" onclick="closeWaitlistModal()" aria-label="Close">✕</button>
     </div>
     <div class="modal-body waitlist-body">
       <p>🚫 All spots are currently filled.</p>
-<p>In the meantime, join our <strong>free Discord community</strong> below and stay plugged in.</p>
-<p>🔔 Another drop is happening <strong>October 28th</strong>.</p>
+<p>🔥 Saucy Drop Tomorrow.</p>
 
-<p>💼 When Saucy opens, it’ll be <strong>$247 lifetime</strong> - a <strong>limited 50% launch drop</strong> before it returns to the full <strong>$500</strong> price.<br>
-I’ll keep lifetime available for now, but starting next drop, we’ll also introduce <strong>monthly options</strong> for those who want to ease in.</p>
+<p>When doors open, you’ll have two access choices:</p>
 
-<p>💡 No need to rush your wallet.<br>
-Start with the YouTube channel.<br>
-Reinvest when you’re ready.</p>
+<p>💰 <strong>$100 Monthly</strong><br>
+Perfect for easing in while leveling up fast.</p>
 
-<p>🔥 Weekly calls with <strong>Fresh (yours truly)</strong>.<br>
-Constant module drops.<br>
-The knowledge keeps getting better overtime, as the community and I keep learning.</p>
+<p>🏆 <strong>$247 Lifetime Access</strong><br>
+Own it forever. Every script. Every update. Weekly calls. Zero renewals.</p>
 
+<p>Prices rise next drop. No pressure, start with what fits.</p>
+
+<div class="pricing-grid">
+  
+  <div class="pricing-card featured">
+      <h3>Lifetime Access</h3>
+      <div class="price">$247</div>
+      <p>Own Saucy forever.<br>All scripts. All updates. Weekly calls.</p>
+      <a href="/buy" class="buy-btn">Get Lifetime</a>
+  </div>
+
+  <div class="pricing-card">
+      <h3>Monthly Access</h3>
+      <div class="price">$100/mo</div>
+      <p>Full access while subscribed.<br>No long-term commitment.</p>
+      <a href="/buy-monthly" class="buy-btn">Start Monthly</a>
+  </div>
+
+</div>
+<p></p>
 <a href="https://discord.gg/czhCcWzUgd" target="_blank" class="discord-cta">Join Free Discord</a>
 
     </div>
