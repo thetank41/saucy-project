@@ -125,15 +125,80 @@ app.get('/access', async (req, res) => {
     const discord = discordField?.text?.value || 'Unknown';
 
     res.send(`
-      <style>
-        body { font-family:sans-serif; text-align:center; padding:2rem; color:#222; }
-        h2 { color:green; }
-      </style>
-      <h2>✅ Payment Verified</h2>
-      <p>You now have <strong>${plan.toUpperCase()}</strong> access to Saucy!</p>
-      <p>Discord Username: <strong>${discord}</strong></p>
-      <p>DM <strong>Fresh</strong> (<em>skymosely</em>) to get everything unlocked.</p>
-      <a href="https://discord.gg/czhCcWzUgd">Join Discord Server</a>
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Welcome to Saucy ✅</title>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #0e1217;
+        color: #fff;
+        text-align: center;
+        padding: 60px 20px;
+    }
+    .card {
+        background: #1a1f2e;
+        border: 1px solid rgba(248,216,122,0.25);
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 35px;
+        border-radius: 14px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    h1 {
+        font-size: 2.2rem;
+        color: #f8d87a;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+    .button {
+        display: inline-block;
+        padding: 14px 30px;
+        background: linear-gradient(135deg, #f8d87a, #f1c94e);
+        color: #000;
+        border-radius: 50px;
+        font-weight: 700;
+        text-decoration: none;
+        text-transform: uppercase;
+        box-shadow: 0 8px 25px rgba(248,216,122,0.3);
+        transition: transform 0.2s ease;
+    }
+    .button:hover {
+        transform: translateY(-2px);
+    }
+    .footer-text {
+        margin-top: 20px;
+        font-size: 0.95rem;
+        color: #e2e8f0;
+    }
+</style>
+</head>
+<body>
+    <div class="card">
+        <h1>✅ You Got In!</h1>
+        <p>Welcome to <strong>Saucy</strong>. You’re officially inside.</p>
+        
+        <p>
+            Click below to access the Skool community and get started:
+        </p>
+
+        <a class="button" href="https://www.skool.com/saucy-4191/about" target="_blank">
+            Join Saucy on Skool
+        </a>
+
+        <p class="footer-text">
+            DM <strong>Fresh</strong> on Discord (<em>freshdoes</em>) for fast onboarding ✅
+        </p>
+    </div>
+</body>
+</html>
+
     `);
 
   } catch (err) {
