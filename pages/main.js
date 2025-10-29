@@ -125,7 +125,7 @@ app.get('/access', async (req, res) => {
     const discord = discordField?.text?.value || 'Unknown';
 
     res.send(`
-      <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -191,9 +191,16 @@ app.get('/access', async (req, res) => {
         <a class="button" href="https://www.skool.com/saucy-4191/about" target="_blank">
             Join Saucy on Skool
         </a>
+        
 
         <p class="footer-text">
             DM <strong>Fresh</strong> on Discord (<em>freshdoes</em>) for fast onboarding ✅
+        </p>
+        <a class="button" href="https://discord.gg/ezwhoring" target="_blank">
+            Join Public Server to DM Fresh.
+        </a>
+        <p class="footer-text">
+            The system is built with security in mind, so everything stays locked-in protected.
         </p>
     </div>
 </body>
